@@ -120,7 +120,7 @@ border-radius: 15px;
       <rect>
        <x>40</x>
        <y>20</y>
-       <width>101</width>
+       <width>161</width>
        <height>31</height>
       </rect>
      </property>
@@ -405,9 +405,9 @@ border-radius: 15px;
     <widget class="QLineEdit" name="transfer_input_id">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>120</y>
-       <width>121</width>
+       <x>70</x>
+       <y>90</y>
+       <width>141</width>
        <height>22</height>
       </rect>
      </property>
@@ -418,9 +418,9 @@ border-radius: 15px;
     <widget class="QLineEdit" name="transfer_price_input">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>150</y>
-       <width>121</width>
+       <x>70</x>
+       <y>120</y>
+       <width>141</width>
        <height>22</height>
       </rect>
      </property>
@@ -431,11 +431,14 @@ border-radius: 15px;
     <widget class="QLabel" name="balance_label">
      <property name="geometry">
       <rect>
-       <x>110</x>
-       <y>70</y>
-       <width>71</width>
-       <height>16</height>
+       <x>90</x>
+       <y>50</y>
+       <width>91</width>
+       <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: italic 16pt &quot;Segoe UI&quot;;</string>
      </property>
      <property name="text">
       <string>TextLabel</string>
@@ -457,22 +460,6 @@ border-radius: 10px;
      </property>
      <property name="text">
       <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="transfer_money_bt">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>180</y>
-       <width>75</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color:rgb(255, 255, 127);</string>
-     </property>
-     <property name="text">
-      <string>PushButton</string>
      </property>
     </widget>
     <widget class="QPushButton" name="home_bt">
@@ -504,14 +491,123 @@ border-radius: 10px;
       <string/>
      </property>
     </widget>
+    <widget class="QStackedWidget" name="stackedWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>270</y>
+       <width>201</width>
+       <height>181</height>
+      </rect>
+     </property>
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="normal_page">
+      <widget class="QPushButton" name="transfer_money_bt">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>181</width>
+         <height>141</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color:rgb(255, 255, 127);</string>
+       </property>
+       <property name="text">
+        <string>Transfer</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="transfer_page"/>
+     <widget class="QWidget" name="are_you_sure_page">
+      <widget class="QLineEdit" name="lineEdit">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>181</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Are you sure you send this to?</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>181</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="transfer_money_bt_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>100</y>
+         <width>71</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color:rgb(255, 255, 127);</string>
+       </property>
+       <property name="text">
+        <string>Yes</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="transfer_money_bt_4">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>100</y>
+         <width>71</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color:rgb(255, 255, 127);</string>
+       </property>
+       <property name="text">
+        <string>No</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QPushButton" name="transfer_money_bt_2">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>160</y>
+       <width>71</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:rgb(255, 255, 127);</string>
+     </property>
+     <property name="text">
+      <string>Send</string>
+     </property>
+    </widget>
     <zorder>label_7</zorder>
     <zorder>label_8</zorder>
     <zorder>transfer_price_input</zorder>
     <zorder>transfer_input_id</zorder>
     <zorder>balance_label</zorder>
-    <zorder>transfer_money_bt</zorder>
     <zorder>home_bt</zorder>
     <zorder>invalid_label_2</zorder>
+    <zorder>stackedWidget_2</zorder>
+    <zorder>transfer_money_bt_2</zorder>
    </widget>
   </widget>
   <widget class="QLabel" name="label_3">

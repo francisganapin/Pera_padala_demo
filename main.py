@@ -10,6 +10,7 @@ import sqlite3
 import threading
 import time
 
+from PyQt6.QtWidgets import QStackedWidget, QWidget, QStackedLayout
 class MyApp(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
@@ -71,19 +72,21 @@ class MyApp(QtWidgets.QWidget):
             self.login_bt.clicked.connect(self.check_credentials)
             self.home_bt.clicked.connect(self.show_page_2) #this will comeback to homepage 
             self.transfer_bt.clicked.connect(self.show_page_3)
-            self.transfer_money_bt.clicked.connect(self.bank_transfer)
+            #self.transfer_money_bt.clicked.connect(self.bank_transfer)
+            self.transfer_money_bt_2.clicked.connect(self.you_sure_page)
 
+             # Initialize stacked widgets
+            self.outer_stackedWidget = self.findChild(QStackedWidget, 'stackedWidget')
+            self.inner_stackedWidget = self.outer_stackedWidget.findChild(QStackedWidget, 'stackedWidget_2')
 
-            # Initialize stacked widget
-            self.stacked_layout = QtWidgets.QStackedLayout()
-            self.page_1 = self.findChild(QtWidgets.QStackedWidget, 'stackedWidget')
-            self.page_2 = self.findChild(QtWidgets.QWidget, 'page_2')
-            self.page_3 = self.findChild(QtWidgets.QWidget, 'page_3')
+        # Initialize the stacked layout
+            self.stacked_layout = QStackedLayout()
 
-
-              # Start the polling thread
-            self.polling_thread = threading.Thread(target=self.poll_database, daemon=True)
-            self.polling_thread.start()
+        # Find pages within the stacked widgets
+            self.page_1 = self.outer_stackedWidget.findChild(QStackedWidget, 'stackedWidget')
+            self.page_2 = self.outer_stackedWidget.findChild(QWidget, 'page_2')
+            self.page_3 = self.outer_stackedWidget.findChild(QWidget, 'page_3')
+            self.page_4 = self.outer_stackedWidget.findChild(QWidget, 'are_you_sure_page')
 
 
 
@@ -221,6 +224,7 @@ class MyApp(QtWidgets.QWidget):
                     bank = result[0]
                 #convert the coount into string         
                     self.bank_display.setText(f'₱ {bank}')
+                    self.balance_label.setText(f'₱ {bank}')
                     
     def dispaly_homepage(self):
         # Define the path to the database file
@@ -245,7 +249,11 @@ class MyApp(QtWidgets.QWidget):
                 self.username_display.setText(f'{username}!')
                 self.balance_label.setText(f'₱ {bank}')
 
-
+    
+    def you_sure_page(self):
+        '''this page is for Rosas'''
+        # Switch to page_4 in the inner stacked layout
+        self.inner_stackedWidget.setCurrentWidget(self.page_4)
    
 
 if __name__ == "__main__":
