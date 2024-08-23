@@ -74,7 +74,9 @@ class MyApp(QtWidgets.QWidget):
             self.transfer_bt.clicked.connect(self.show_page_3)
             #self.transfer_money_bt.clicked.connect(self.bank_transfer)
             self.transfer_money_bt_2.clicked.connect(self.you_sure_page)
-
+            self.no_go_to_blank_page.clicked.connect(self.blank_page_no)
+            self.transfer_money_bt_yes.clicked.connect(self.transfer_page_yes)
+            self.transfer_money_bt.clicked.connect(self.bank_transfer)
              # Initialize stacked widgets
             self.outer_stackedWidget = self.findChild(QStackedWidget, 'stackedWidget')
             self.inner_stackedWidget = self.outer_stackedWidget.findChild(QStackedWidget, 'stackedWidget_2')
@@ -87,8 +89,15 @@ class MyApp(QtWidgets.QWidget):
             self.page_2 = self.outer_stackedWidget.findChild(QWidget, 'page_2')
             self.page_3 = self.outer_stackedWidget.findChild(QWidget, 'page_3')
             self.page_4 = self.outer_stackedWidget.findChild(QWidget, 'are_you_sure_page')
+            self.blank_page = self.outer_stackedWidget.findChild(QWidget,'blank_page')
+            self.transfer_page_2 = self.outer_stackedWidget.findChild(QWidget,'transfer_page_2')
 
 
+        # have place holder 
+            self.transfer_input_id = self.findChild(QLineEdit,'transfer_input_id')
+            self.transfer_price_input =  self.findChild(QLineEdit,'transfer_price_input')
+            self.transfer_price_input.setPlaceholderText('Enter Amount')
+            self.transfer_input_id.setPlaceholderText("Enter another user")
 
 
             # Initialize user attribute
@@ -192,7 +201,7 @@ class MyApp(QtWidgets.QWidget):
 
                     self.invalid_label_2.setText('Transfer Successful')
                     QTimer.singleShot(3000, lambda: self.invalid_label_2.setText(''))
-
+                    self.inner_stackedWidget.setCurrentWidget(self.blank_page)
                     # Update displayed balance
                     self.balance_label.setText(f'₱ {new_balance}')
                 else:
@@ -251,10 +260,21 @@ class MyApp(QtWidgets.QWidget):
 
     
     def you_sure_page(self):
-        '''this page is for Rosas'''
-        # Switch to page_4 in the inner stacked layout
-        self.inner_stackedWidget.setCurrentWidget(self.page_4)
-   
+        '''This page is for Rosas'''
+        transfer_id = self.transfer_input_id.text()
+        transfer_amount = self.transfer_price_input.text()
+
+        if transfer_id and transfer_amount:
+            self.inner_stackedWidget.setCurrentWidget(self.page_4)
+        else:
+            self.validator_complete_details.setText('Please complete details')
+
+    def blank_page_no(self):
+        ''' if user dont accept  it goes to blank page'''
+        self.inner_stackedWidget.setCurrentWidget(self.blank_page)
+
+    def transfer_page_yes(self):
+        self.inner_stackedWidget.setCurrentWidget(self.transfer_page_2)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
