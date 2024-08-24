@@ -157,6 +157,7 @@ class MyApp(QtWidgets.QWidget):
         self.stackedWidget.setCurrentWidget(self.page_2)
 
     def bank_transfer(self):
+
         transfer_id = self.transfer_input_id.text()
         transfer_amount = self.transfer_price_input.text()
 
@@ -170,6 +171,7 @@ class MyApp(QtWidgets.QWidget):
             self.invalid_label_2.setText('Invalid amount')
             QTimer.singleShot(3000, lambda: self.invalid_label_2.setText(''))
             return
+        
         # Define the path to the database file
         current_directory = os.path.dirname(os.path.abspath(__file__))
         file_path = os.path.join(current_directory, 'database.db')
